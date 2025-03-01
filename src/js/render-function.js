@@ -1,31 +1,69 @@
-function renderGaleryImg(gallery) {
-  return gallery
-    .map(item => {
-      return `<li class="gallery-item">
-      <a href="${item.largeImageURL}" class="gallery-link">
-        <img class="gallery-image" src="${item.webformatURL}" alt="${item.tags}" data-source="${item.tags}"
-        data-title="${item.tags}"  height="255" width="430"/>
-      </a> 
-          <ul class="sublist">
-        <li class="sublist-item">
-            <p class="sublist-title">Likes</p>
-            <p class="sublist-text">${item.likes}</p>
-         </li>
-        <li class="sublist-item">
-            <p class="sublist-title">Viewes</p>
-            <p class="sublist-text">${item.views}</p>
-         </li>
-         <li class="sublist-item">
-            <p class="sublist-title">Comments</p>
-            <p class="sublist-text">${item.comments}</p>
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
+export const toggleLoadingIndicator = isLoading => {
+  const loader = document.querySelector('.loader');
+  if (isLoading) {
+    loader.classList.remove('hidden');
+  } else {
+    loader.classList.add('hidden');
+  }
+};
+
+export const renderImages = images => {
+  const gallery = document.querySelector('.gallery');
+  gallery.innerHTML = '';
+
+  if (images.length === 0) {
+    iziToast.error({
+      message: 'Sorry, no images match your search. Please try again!',
+      position: 'topRight',
+      timeout: 5000,
+      transitionIn: 'fadeIn',
+      transitionOut: 'fadeOut',
+    });
+    return;
+  }
+
+  const markup = images
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => {
+        return `
+        <li>
+          <a href="${largeImageURL}" class="gallery-item">
+            <img src="${webformatURL}" alt="${tags}" />
+          </a>
+          <div class="info">
+            <div class="stat-item">
+              <p class="label">Likes</p>
+              <p class="value">${likes}</p>
+            </div>
+            <div class="stat-item">
+              <p class="label">Views</p>
+              <p class="value">${views}</p>
+            </div>
+            <div class="stat-item">
+              <p class="label">Comments</p>
+              <p class="value">${comments}</p>
+            </div>
+            <div class="stat-item">
+              <p class="label">Downloads</p>
+              <p class="value">${downloads}</p>
+            </div>
+          </div>
         </li>
-         <li class="sublist-item">
-            <p class="sublist-title">Download</p>
-            <p class="sublist-text">${item.downloads}</p>
-        </li>
-    </ul>
-      </li>`;
-    })
+      `;
+      }
+    )
     .join('');
-}
-export default renderGaleryImg;
+
+  gallery.insertAdjacentHTML('beforeend', markup);
+};

@@ -3,30 +3,25 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/goit-js-hw-11/public/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+    <title>Image Search</title>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
 <body>
-    <main>
-        <section class="galery-form">
-            <div class="container">
-                <h2 class="title">Search image</h2>
-                <form class="form">
-                    <input class="form__input js-form-input" type="text" name="search" placeholder="Search image..."
-                        autofocus />
-                    <button type="submit" class="form__btn js-form-btn">Search</button>
-                </form>
-                <span class="loader"></span>
-                <ul class="gallery"></ul>
-            </div>
-        </section>
-    </main>
+    <form class="form">
+        <input type="text" class="form-input" id="search-input" name="search-query" placeholder="Search images..." />
+        <button type="submit" class="sub-btn">Search</button>
+    </form>
+
+    <ul class="gallery"></ul>
+
+    <div class="loader hidden">
+        <span class="loading"> </span>
+        Loading images, please wait......
+    </div>
+
     <script type="module" src="./main.js"></script>
 </body>
 
