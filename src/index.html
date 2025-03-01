@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
-
     <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
+        <section class="galery-form">
+            <div class="container">
+                <h2 class="title">Search image</h2>
+                <form class="form">
+                    <input class="form__input js-form-input" type="text" name="search" placeholder="Search image..."
+                        autofocus />
+                    <button type="submit" class="form__btn js-form-btn">Search</button>
+                </form>
+                <span class="loader"></span>
+                <ul class="gallery"></ul>
+            </div>
+        </section>
     </main>
-
     <load src="./partials/footer.html" />
-
     <script type="module" src="./main.js"></script>
-  </body>
+</body>
+
 </html>
